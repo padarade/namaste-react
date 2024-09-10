@@ -19,3 +19,17 @@
 - Tree shaking - remove unused code
 - different dev and production bundler
 - npx parcel build index.html
+===========================================================================================================
+Two types of import/ export
+
+- Default Export/Import
+export default Component
+import Component from "path"
+
+- Named export/import
+
+export const Component
+import {Component} from "path"
+
+===========================================================================================================
+
