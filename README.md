@@ -33,3 +33,6 @@ import {Component} from "path"
 
 ===========================================================================================================
 
+2 types of routing
+- Client side routing
+- Server side routing
