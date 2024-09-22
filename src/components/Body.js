@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import restaurantsList from "../utils/restaurant.json";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromoted } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   // state variable - super power varaible
@@ -11,6 +12,9 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  const { loggedinUser,  setUserInfo } = useContext(UserContext);
+
+  const RestaurantCardPromoted = withPromoted(RestaurantCard);
   // Alternate way to destructure array object of useState
   // const arr = useState(restaurantsList);
   // const [listofRestaurant, setListofRestaurant] = arr;
@@ -95,13 +99,28 @@ const Body = () => {
             Top Rated Restaurants
           </button>
         </div>
+        <div className="m-4 p-4 flex items-center">
+          <label>User Name</label>:
+          <input
+            className="border border-black p-2"
+            value={loggedinUser}
+            onChange={(e) => {
+              setUserInfo(e.target.value);
+            }}
+          />
+        </div>
       </div>
 
       <div className="res-container flex flex-wrap">
         {filteredRestaurant.map((restaurant) => {
           return (
             <Link to={"/restaurant/" + restaurant?.info?.id}>
-              <RestaurantCard key={restaurant?.info?.id} resData={restaurant} />
+              {/* if restaurant is promoted then show label */}
+              {/* <RestaurantCard key={restaurant?.info?.id} resData={restaurant} /> */}
+              <RestaurantCardPromoted
+                key={restaurant?.info?.id}
+                resData={restaurant}
+              />
             </Link>
           );
         })}

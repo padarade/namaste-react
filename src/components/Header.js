@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [btnName, setbtnName] = useState("Login");
+  const {loggedinUser} = useContext(UserContext);
   return (
     <div className="header flex justify-between shadow-lg bg-pink-50 sm:bg-yellow-50 lg:bg-green-50">
       <div className="logo-container">
@@ -11,13 +13,23 @@ const Header = () => {
       </div>
       <div className="flex items-center">
         <ul className="flex p-4 m-4">
-          <li className="px-4"><Link to="/">Home</Link></li>
+          <li className="px-4">
+            <Link to="/">Home</Link>
+          </li>
           {/* anchor tag Loads complete Ui */}
           {/* <li><a href="/about">About</a></li> */}
-          <li className="px-4"><Link to="/about">About</Link></li>
-          <li className="px-4"><Link to="/contact">Contact Us</Link></li>
-          <li className="px-4"><Link to="/grocery">Grocery</Link></li>
-          <li className="px-4"><Link to="/contact">Contact Us</Link></li>
+          <li className="px-4">
+            <Link to="/about">About</Link>
+          </li>
+          <li className="px-4">
+            <Link to="/contact">Contact Us</Link>
+          </li>
+          <li className="px-4">
+            <Link to="/grocery">Grocery</Link>
+          </li>
+          <li className="px-4">
+            <Link to="/contact">Contact Us</Link>
+          </li>
           <li className="px-4">Cart</li>
           <button
             className="login"
@@ -27,6 +39,7 @@ const Header = () => {
           >
             {btnName}
           </button>
+          <li className="px-4"> {loggedinUser}</li>
         </ul>
       </div>
     </div>

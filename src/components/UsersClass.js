@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import UserContext from "../utils/UserContext";
 
 class UserClass extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class UserClass extends Component {
     const { count } = this.state;
     return (
       <div className="user-card">
-        s<h1>Count: {this.state.count}</h1>
+        <h1>Count: {this.state.count}</h1>
         <button
           onClick={() => {
             this.setState({
@@ -44,6 +45,13 @@ class UserClass extends Component {
         <h3>Name: {name}</h3>
         <h4>Location: {location}</h4>
         <h5>Contact: {contact}</h5>
+        <div>
+          <UserContext.Consumer>
+            {({ loggedinUser }) => (
+              <h1 className="text-xl font-bold">{loggedinUser}</h1>
+            )}
+          </UserContext.Consumer>
+        </div>
       </div>
     );
   }

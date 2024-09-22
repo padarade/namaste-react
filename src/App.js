@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import "../index.css";
@@ -8,6 +8,7 @@ import About from "./components/About.js";
 import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
 import RestaurantMenu from "./components/RestaurantMenu.js";
+import UserContext from "./utils/UserContext.js";
 //import Grocery from "./components/Grocery.js";
 
 //Chunking
@@ -16,11 +17,25 @@ import RestaurantMenu from "./components/RestaurantMenu.js";
 // Lazy loading
 // on demand loading
 const AppLayout = () => {
+  const [userInfo, setUserInfo] = useState();
+
+  useEffect(() => {
+    //make an api call to fetch userInfo
+    const data = {
+      name: "Pallavi",
+    };
+    setUserInfo(data.name);
+  },[]);
+  
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedinUser: userInfo, setUserInfo }}>
+      <div className="app">
+        {/* <UserContext.Provider value={{ loggedinUser: "Sony" }}> */}
+        <Header />
+        {/* </UserContext.Provider> */}
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
@@ -43,7 +58,7 @@ const appRouter = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
-	  {
+      {
         path: "/grocery1",
         element: <Grocery />,
       },
