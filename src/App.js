@@ -9,7 +9,9 @@ import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
 import RestaurantMenu from "./components/RestaurantMenu.js";
 import UserContext from "./utils/UserContext.js";
-//import Grocery from "./components/Grocery.js";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore.js";
+import Cart from "./components/Cart.js";
 
 //Chunking
 // Code Splitting
@@ -25,17 +27,19 @@ const AppLayout = () => {
       name: "Pallavi",
     };
     setUserInfo(data.name);
-  },[]);
-  
+  }, []);
+
   return (
-    <UserContext.Provider value={{ loggedinUser: userInfo, setUserInfo }}>
-      <div className="app">
-        {/* <UserContext.Provider value={{ loggedinUser: "Sony" }}> */}
-        <Header />
-        {/* </UserContext.Provider> */}
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedinUser: userInfo, setUserInfo }}>
+        <div className="app">
+          {/* <UserContext.Provider value={{ loggedinUser: "Sony" }}> */}
+          <Header />
+          {/* </UserContext.Provider> */}
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -73,6 +77,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,
