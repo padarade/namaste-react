@@ -69,6 +69,7 @@ const Body = () => {
             className="search-box border border-solid border-black"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
+            data-testid="searchInput"
           />
           <button
             className="px-4 py-2 m-4 bg-green-100 rounded-lg"

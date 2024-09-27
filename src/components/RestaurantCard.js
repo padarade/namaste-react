@@ -7,6 +7,7 @@ const RestaurantCard = (props) => {
     resData?.info;
   return (
     <div
+      data-testid="resCard"
       className="res-card p-4 m-4 w-[200px] h-[400px] rounded-lg bg-gray-100 hover:bg-gray-400"
       // style={{ background: "#f0f0f0" }}
     >
@@ -35,7 +36,9 @@ export const withPromoted = () => {
   return (props) => {
     return (
       <div>
-        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">Promoted</label>
+        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
+          Promoted
+        </label>
         <RestaurantCard {...props}></RestaurantCard>
       </div>
     );

@@ -1,0 +1,20 @@
+#cannot start server below error
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  (0, _assert().default)(globNode && globNode.type === GLOB)
+
+    at RequestGraph.respondToFSEvents (D:\Pallavi\Learning\namaste-react\node_modules\@parcel\core\lib\RequestTracker.js:493:33)
+    at loadRequestGraph (D:\Pallavi\Learning\namaste-react\node_modules\@parcel\core\lib\RequestTracker.js:873:18)
+    at async RequestTracker.init (D:\Pallavi\Learning\namaste-react\node_modules\@parcel\core\lib\RequestTracker.js:822:17)
+    at async Parcel._init (D:\Pallavi\Learning\namaste-react\node_modules\@parcel\core\lib\Parcel.js:188:28)
+    at async Parcel.watch (D:\Pallavi\Learning\namaste-react\node_modules\@parcel\core\lib\Parcel.js:260:7)
+    at async run (D:\Pallavi\Learning\namaste-react\node_modules\parcel\lib\cli.js:283:9) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: true,
+  operator: '=='
+}
+
+*****Delete .parcel-cache in local****
