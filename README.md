@@ -70,4 +70,4 @@ import {Component} from "path"
 - install @testing-library/jest-dom - helps to toBeInTheDocument etc to test
 
 # Note
-__ - dunder js
+- dunder js
